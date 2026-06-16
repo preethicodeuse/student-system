@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Students</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<h1>📄 Students List</h1>
+
+<!-- SEARCH INSIDE VIEW PAGE -->
+<form method="POST">
+
+    <input type="text" name="keyword" placeholder="Search Name / Course / Age">
+    <button type="submit">Search</button>
+
+    <a href="/students"><button type="button">Reset</button></a>
+
+</form>
+
+<br>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Course</th>
+        <th>Actions</th>
+    </tr>
+
+    {% for s in students %}
+    <tr>
+        <td>{{ s[0] }}</td>
+        <td>{{ s[1] }}</td>
+        <td>{{ s[2] }}</td>
+        <td>{{ s[3] }}</td>
+        <td>
+            <a href="/edit/{{ s[0] }}"><button>Edit</button></a>
+            <a href="/delete/{{ s[0] }}"><button>Delete</button></a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+<br>
+
+<div style="text-align:center;">
+    <a href="/export/excel"><button>Export Excel</button></a>
+    <a href="/export/pdf"><button>Export PDF</button></a>
+</div>
+
+</body>
+</html>
